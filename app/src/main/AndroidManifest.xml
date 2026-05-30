@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-sdk android:minSdkVersion="30" android:targetSdkVersion="35" />
+    <application
+        android:allowBackup="false"
+        android:extractNativeLibs="true"
+        android:label="Manage Renderer">
+        <meta-data android:name="fclPlugin" android:value="true"/>
+        <meta-data android:name="des" android:value="Manage Zink Renderer"/>
+        <meta-data android:name="renderer" android:value="Manage:libOSMBridge.so:libOSMBridge.so"/>
+        <meta-data android:name="boatEnv" android:value="LIBGL_STRING=custom_gallium:LIBGL_NAME=libmanage_zink.so:MESA_LIBRARY=libmanage_zink.so:DLOPEN=libOSMBridge.so"/>
+        <meta-data android:name="pojavEnv" android:value="POJAV_RENDERER=custom_gallium:LIB_MESA_NAME=libOSMBridge.so:MESA_LIBRARY=libmanage_zink.so:DLOPEN=libmanage_zink.so"/>
+        <activity android:exported="true" android:name="com.manage.renderer.EmptyActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
