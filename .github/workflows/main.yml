@@ -1,0 +1,52 @@
+name: Build Manage APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+
+    - name: Build with Gradle
+      run: ./gradlew assembleRelease
+
+    - name: Sign APK
+      run: |
+        keytool -genkey -v \
+          -keystore debug.keystore \
+          -alias androiddebugkey \
+          -keyalg RSA -keysize 2048 -validity 10000 \
+          -storepass android -keypass android \
+          -dname "CN=Android Debug,O=Android,C=US"
+
+        $ANDROID_HOME/build-tools/34.0.0/zipalign -v 4 \
+          app/build/outputs/apk/release/app-release-unsigned.apk \
+          app-release-aligned.apk
+
+        $ANDROID_HOME/build-tools/34.0.0/apksigner sign \
+          --ks debug.keystore \
+          --ks-pass pass:android \
+          --ks-key-alias androiddebugkey \
+          --key-pass pass:android \
+          --out ManageRenderer.apk \
+          app-release-aligned.apk
+
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ManageRenderer
+        path: ManageRenderer.apk
