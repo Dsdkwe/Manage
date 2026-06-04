@@ -8,9 +8,8 @@
         <meta-data android:name="fclPlugin" android:value="true"/>
         <meta-data android:name="des" android:value="Manage Zink Renderer"/>
         <meta-data android:name="renderer" android:value="Manage:libOSMBridge.so:libOSMBridge.so"/>
-        <meta-data android:name="boatEnv" android:value="LIBGL_STRING=custom_gallium:LIBGL_NAME=libmanage_zink.so:MESA_LIBRARY=libmanage_zink.so:DLOPEN=libOSMBridge.so"/>
-        <meta-data android:name="pojavEnv" android:value="POJAV_RENDERER=custom_gallium:LIB_MESA_NAME=libOSMBridge.so:MESA_LIBRARY=libmanage_zink.so:DLOPEN=libmanage_zink.so"/>
-        <activity android:exported="true" android:name="com.manage.renderer.EmptyActivity">
+        <meta-data android:name="boatEnv" android:value="LIBGL_STRING=custom_gallium:LIBGL_NAME=libOSMBridge.so:LIB_MESA_NAME=libOSMBridge.so:MESA_LIBRARY=libOSMBridge.so:DLOPEN=libOSMBridge.so"/>
+        <meta-data android:name="pojavEnv" android:value="POJAV_RENDERER=custom_gallium:LIB_MESA_NAME=libOSMBridge.so:MESA_LIBRARY=libOSMBridge.so:DLOPEN=libOSMBridge.so"/>
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
